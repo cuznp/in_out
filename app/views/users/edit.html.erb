@@ -1,0 +1,39 @@
+<script type="text/javascript" src="http://localhost:9292/faye/client.js"></script>
+<script type="text/javascript">
+  $(function() {
+    // Create a new client to connect to Faye
+    var client = new Faye.Client('http://localhost:9292/faye');
+ 
+    // Handle form submissions and post messages to faye
+    $('[name="commit"]').click(function(){
+      // Publish the message to the channel
+      client.publish('/status', {
+        id: '<%= @user.id %>',
+        status: $("#user_status option:selected").html()
+      });
+ 
+      // Set to true for real functionality.. Currently false to test websocket connectivity
+      return true;
+    });
+  });
+</script>
+<%= form_for(@user, :html => {:class => "styled-form"}) do |f| %>
+  <label class="styled-label"> My Status:     
+    <%= f.select :status, User::STATUSES.keys, {}, :class => "styled-input" %>    
+  </label>
+  <label class="styled-label"> Email
+    <%= f.text_field :email, :class => "styled-input" %>    
+  </label>
+  <label class="styled-label"> First Name
+    <%= f.text_field :first_name, :class => "styled-input" %>    
+  </label>
+  <label class="styled-label"> Last Name
+    <%= f.text_field :last_name, :class => "styled-input" %>    
+  </label>
+  <label class="styled-label"> Web Site
+    <%= f.text_field :web_site, :class => "styled-input" %>    
+  </label>
+
+  <div><%= f.submit "Save" %></div>
+
+<% end %>
