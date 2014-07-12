@@ -19,15 +19,24 @@
 $(document).ready(function(e){
     $("#add_user_form").submit(function(){
         var user_id = $('#team_user').val();
-        var url =  '/users/' + user_id + '/join_team';
-        $('#add_user_form').attr('action', url);
-        e.preventDefault();
-        return false;
+        console.log(user_id);
+        if (user_id != null)
+        {
+          var url =  '/users/' + user_id + '/join_team';
+          $('#add_user_form').attr('action', url);
+          e.preventDefault();
+          return false;   
+        }
+        else
+        {
+          var url =  document.URL;
+          $('#add_user_form').attr('action', url);
+          e.preventDefault();
+          return false;
+        };
     });
   });
 </script>
-
-<p id="notice"><%= notice %></p>
 
 <h2><%= @team.name %></h2>
 

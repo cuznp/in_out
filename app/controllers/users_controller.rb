@@ -37,7 +37,6 @@ class UsersController < ApplicationController
   def join_team
     user = User.find(params[:id]) 
     teamid = Rails.application.routes.recognize_path(request.referer)
-    #puts teamid[:id]
     user.team_id = teamid[:id]
     user.save
     redirect_to(:back)

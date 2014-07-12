@@ -62,7 +62,7 @@ class TeamsController < ApplicationController
 
     respond_to do |format|
       if @team.update_attributes(params[:team])
-        format.html { redirect_to @team, notice: 'Team was successfully updated.' }
+        format.html { redirect_to @team }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
