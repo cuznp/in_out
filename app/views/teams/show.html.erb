@@ -1,0 +1,48 @@
+<script type="text/javascript" src="http://localhost:9292/faye/client.js"></script>
+<script type="text/javascript">
+  $(function() {
+    // Create a new client to connect to Faye
+    var client = new Faye.Client('http://localhost:9292/faye');
+ 
+    // Subscribe to the public channel
+    var public_subscription = client.subscribe('/status', function(data) {
+      console.log('Message recieved' + " " + data.id + " " + data.status);
+      var statusId = "status-" + data.id;
+      var newStatus = "status status-" + data.status;
+      document.getElementById(statusId).setAttribute("class", newStatus);
+      document.getElementById(statusId).innerHTML = data.status;
+    });
+  });
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(e){
+    $("#add_user_form").submit(function(){
+        var user_id = $('#team_user').val();
+        var url =  '/users/' + user_id + '/join_team';
+        $('#add_user_form').attr('action', url);
+        e.preventDefault();
+        return false;
+    });
+  });
+</script>
+
+<p id="notice"><%= notice %></p>
+
+<h2><%= @team.name %></h2>
+
+  <% @members.each do |member| %>
+    <p> 
+      <%= member_status(member.full_name, member.status, member.id) %>
+    </p>
+  <% end %>
+
+<%= form_for(@team, :html => {:class => "styled-form", :id => "add_user_form"}) do |f| %>
+  <label class="styled-label"> Unassigned Users:     
+    <%= f.select :user, @nonmembers.map {|t| [t.full_name,t.id] }, {}, :class => "styled-input" %>
+  </label>
+  <%= f.submit "Add User to Group" %>
+<% end %>
+
+<%= link_to 'Edit', edit_team_path(@team) %> |
+<%= link_to 'Back', teams_path %>

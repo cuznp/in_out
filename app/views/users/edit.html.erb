@@ -17,6 +17,7 @@
     });
   });
 </script>
+
 <%= form_for(@user, :html => {:class => "styled-form"}) do |f| %>
   <label class="styled-label"> My Status:     
     <%= f.select :status, User::STATUSES.keys, {}, :class => "styled-input" %>    
@@ -32,6 +33,9 @@
   </label>
   <label class="styled-label"> Web Site
     <%= f.text_field :web_site, :class => "styled-input" %>    
+  </label>
+   <label class="styled-label"> My Team:     
+    <%= f.select :team_id, @teams.map {|t| [t.name,t.id] }, {}, :class => "styled-input" %>
   </label>
 
   <div><%= f.submit "Save" %></div>

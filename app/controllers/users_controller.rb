@@ -18,12 +18,29 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    @teams = Team.all
   end
 
   def update
     user = User.find(params[:id])
     user.update_attributes(params[:user])
     redirect_to users_path
+  end
+
+  def leave_team
+    user = User.find(params[:id])
+    user.team_id = nil
+    user.save
+    redirect_to(:back)
+  end
+
+  def join_team
+    user = User.find(params[:id]) 
+    teamid = Rails.application.routes.recognize_path(request.referer)
+    #puts teamid[:id]
+    user.team_id = teamid[:id]
+    user.save
+    redirect_to(:back)
   end
 
   private
