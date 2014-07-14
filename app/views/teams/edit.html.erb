@@ -1,0 +1,14 @@
+<h1>Rename Team</h1>
+
+<%= form_for(@team, :html => {:class => "styled-form"}) do |f| %>
+
+  <label class="styled-label"> Name
+    <%= f.text_field :name, :class => "styled-input", :required => true %>    
+  </label>
+  
+  <%= f.submit "Update Name" %>
+
+<% end %>
+
+<%= link_to 'Show', @team %> |
+<%= link_to 'Back', teams_path %>

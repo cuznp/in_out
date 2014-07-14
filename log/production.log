@@ -1,0 +1,167 @@
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Started GET "/users" for 127.0.0.1 at 2014-07-08 13:32:54 -0700
+Processing by UsersController#index as HTML
+  Rendered users/index.html.erb within layouts/application (3.5ms)
+Completed 500 Internal Server Error in 90ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3:   <head>
+    4:     <title>Clio's Statusboard</title>
+    5:     <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:     <%= javascript_include_tag "application" %>
+    7:     <%= javascript_include_tag "http://localhost:9292/faye.js" %>
+    8:     <%= csrf_meta_tags %>
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb__3891857734791885619_70187053687460'
+
+
+Started GET "/users" for 127.0.0.1 at 2014-07-08 13:33:20 -0700
+Processing by UsersController#index as HTML
+  Rendered users/index.html.erb within layouts/application (1.6ms)
+Completed 500 Internal Server Error in 5ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3:   <head>
+    4:     <title>Clio's Statusboard</title>
+    5:     <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:     <%= javascript_include_tag "application" %>
+    7:     <%= javascript_include_tag "http://localhost:9292/faye.js" %>
+    8:     <%= csrf_meta_tags %>
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb__3891857734791885619_70187053687460'
+
+
+Started GET "/" for 127.0.0.1 at 2014-07-08 13:33:23 -0700
+Processing by UsersController#index as HTML
+  Rendered users/index.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 5ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3:   <head>
+    4:     <title>Clio's Statusboard</title>
+    5:     <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:     <%= javascript_include_tag "application" %>
+    7:     <%= javascript_include_tag "http://localhost:9292/faye.js" %>
+    8:     <%= csrf_meta_tags %>
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb__3891857734791885619_70187053687460'
+
+
+Connecting to database specified by database.yml
+Started GET "/" for 127.0.0.1 at 2014-07-08 13:34:24 -0700
+Processing by UsersController#index as HTML
+  Rendered users/index.html.erb within layouts/application (3.2ms)
+Completed 500 Internal Server Error in 73ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3:   <head>
+    4:     <title>Clio's Statusboard</title>
+    5:     <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:     <%= javascript_include_tag "application" %>
+    7:     <%= javascript_include_tag "http://localhost:9292/faye.js" %>
+    8:     <%= csrf_meta_tags %>
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___2913272511747424153_70263540981080'
+
+
+Started GET "/" for 127.0.0.1 at 2014-07-08 13:34:35 -0700
+Processing by UsersController#index as HTML
+Completed 401 Unauthorized in 1ms
+Started GET "/users/sign_in" for 127.0.0.1 at 2014-07-08 13:34:35 -0700
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/sessions/new.html.erb within layouts/application (2.2ms)
+Completed 500 Internal Server Error in 18ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3:   <head>
+    4:     <title>Clio's Statusboard</title>
+    5:     <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:     <%= javascript_include_tag "application" %>
+    7:     <%= javascript_include_tag "http://localhost:9292/faye.js" %>
+    8:     <%= csrf_meta_tags %>
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___2913272511747424153_70263540981080'
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2014-07-08 13:34:35 -0700
+
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  rack-cache (1.2) lib/rack/cache/context.rb:136:in `forward'
+  rack-cache (1.2) lib/rack/cache/context.rb:245:in `fetch'
+  rack-cache (1.2) lib/rack/cache/context.rb:185:in `lookup'
+  rack-cache (1.2) lib/rack/cache/context.rb:66:in `call!'
+  rack-cache (1.2) lib/rack/cache/context.rb:51:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  railties (3.2.13) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  faye (1.0.1) lib/faye/adapters/rack_adapter.rb:65:in `call'
+  thin (1.6.2) lib/thin/connection.rb:86:in `block in pre_process'
+  thin (1.6.2) lib/thin/connection.rb:84:in `catch'
+  thin (1.6.2) lib/thin/connection.rb:84:in `pre_process'
+  thin (1.6.2) lib/thin/connection.rb:53:in `process'
+  faye-websocket (0.7.4) lib/faye/adapters/thin.rb:40:in `process'
+  thin (1.6.2) lib/thin/connection.rb:39:in `receive_data'
+  faye-websocket (0.7.4) lib/faye/adapters/thin.rb:44:in `receive_data'
+  eventmachine (1.0.3) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.3) lib/eventmachine.rb:187:in `run'
+  thin (1.6.2) lib/thin/backends/base.rb:73:in `start'
+  thin (1.6.2) lib/thin/server.rb:162:in `start'
+  rack (1.4.5) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.5) lib/rack/server.rb:268:in `start'
+  rack (1.4.5) lib/rack/server.rb:137:in `start'
+  rack (1.4.5) bin/rackup:4:in `<top (required)>'
+  /Users/punderwo/.rvm/gems/ruby-2.0.0-p481/bin/rackup:23:in `load'
+  /Users/punderwo/.rvm/gems/ruby-2.0.0-p481/bin/rackup:23:in `<main>'
+  /Users/punderwo/.rvm/gems/ruby-2.0.0-p481/bin/ruby_executable_hooks:15:in `eval'
+  /Users/punderwo/.rvm/gems/ruby-2.0.0-p481/bin/ruby_executable_hooks:15:in `<main>'
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2014-07-08 13:34:53 -0700
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/sessions/new.html.erb within layouts/application (1.5ms)
+Completed 500 Internal Server Error in 4ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3:   <head>
+    4:     <title>Clio's Statusboard</title>
+    5:     <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:     <%= javascript_include_tag "application" %>
+    7:     <%= javascript_include_tag "http://localhost:9292/faye.js" %>
+    8:     <%= csrf_meta_tags %>
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___2913272511747424153_70263540981080'
+
+
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Started GET "/" for 127.0.0.1 at 2014-07-08 15:39:51 -0700
+Processing by UsersController#index as HTML
+  Rendered users/index.html.erb within layouts/application (3.1ms)
+Completed 500 Internal Server Error in 69ms
+
+ActionView::Template::Error (application.css isn't precompiled):
+    2: <html>
+    3:   <head>
+    4:     <title>Clio's Statusboard</title>
+    5:     <%= stylesheet_link_tag    "application", :media => "all" %>
+    6:     <%= javascript_include_tag "application" %>
+    7:     <%= javascript_include_tag "http://localhost:9292/faye.js" %>
+    8:     <%= csrf_meta_tags %>
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___3662289261612056893_70289852834060'
+
+

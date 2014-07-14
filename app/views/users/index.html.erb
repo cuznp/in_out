@@ -1,0 +1,52 @@
+<<<<<<< HEAD
+=======
+<script type="text/javascript" src="http://localhost:9292/faye/client.js"></script>
+<script type="text/javascript">
+  $(function() {
+    // Create a new client to connect to Faye
+    var client = new Faye.Client('http://localhost:9292/faye');
+ 
+    // Subscribe to the public channel
+    var public_subscription = client.subscribe('/status', function(data) {
+      console.log('Message recieved' + " " + data.id + " " + data.status);
+      var statusId = "status-" + data.id;
+      var newStatus = "status status-" + data.status;
+      document.getElementById(statusId).setAttribute("class", newStatus);
+      document.getElementById(statusId).innerHTML = data.status;
+    });
+  });
+</script>
+
+>>>>>>> f213513f799935cd92e2460be823efb2a44a9a19
+<p> 
+  <span class="name"> My status </span>
+  <span class="status status-<%=current_user.status%>"> <%= current_user.status %> </span>
+  <%= link_to("Edit", edit_user_path(current_user), :class => "update-link") %>
+</p>
+
+<div id="users-container">
+  <% @users.each do |user| %>
+    <p> 
+      <%= name_with_status(user.full_name, user.status, user.id) %>
+    </p>
+  <% end %>
+</div>
+
+<<<<<<< HEAD
+=======
+<p>
+  <%= link_to("View Teams", teams_path) %>
+</p>
+
+>>>>>>> f213513f799935cd92e2460be823efb2a44a9a19
+<script type="text/javascript">
+  $("#users-container a.update-link").click(function(){
+    var block = $(this).parent("p");
+    $.get($(this).attr("href"), function(data){
+      $("a.name", block).html(data["full_name"]);
+      $("span.status", block).removeClass("status-in status-out").
+        addClass("status-"+data["status"]).html(data["status"]);
+    });
+    return false;
+  });
+</script>
