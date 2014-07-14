@@ -37,11 +37,3 @@
   <div><%= f.submit "Save" %></div>
 
 <% end %>
-
-  <label class="styled-label"> My Team:     
-    <%= f.select :team_id, @teams.map {|t| [t.name,t.id] }, {}, :class => "styled-input" %>
-  </label>
-
-  <div><%= f.submit "Save" %></div>
-<% end %>
-

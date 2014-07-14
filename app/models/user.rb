@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
     STATUSES.key(read_attribute(:status))
   end
 
+ unless ( User.columns_hash['current_sign_in_ip'].type != "string" )
   [:current_sign_in_ip, :last_sign_in_ip].each do |field|
     define_method(field) do
       ip = read_attribute(field)
@@ -49,4 +50,5 @@ class User < ActiveRecord::Base
       write_attribute(field, as_int)
     end
   end
+ end
 end

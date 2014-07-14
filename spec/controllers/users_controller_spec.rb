@@ -14,15 +14,14 @@ describe UsersController, :type => :controller do
     it "renders the index template" do
       expect(response).to render_template("index")
     end
-  end
 
-end
     it "populates an array of users" do 
       user = FactoryGirl.create(:user) 
       get :index 
       expect(assigns(:users)).to eq([user]) 
     end 
   end
+  
   describe "GET show" do
     it "assigns the requested user as @user" do
       #user = FactoryGirl.create(:user)
