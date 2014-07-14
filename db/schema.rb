@@ -28,13 +28,14 @@ ActiveRecord::Schema.define(:version => 20140709231500) do
     t.integer  "sign_in_count",          :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+
+    t.integer  "current_sign_in_ip"
+    t.integer  "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.integer  "status",                 :default => 0,  :null => false
-    t.string   "first_name",             :default => "", :null => false
-    t.string   "last_name",              :default => "", :null => false
+    t.string   "first_name",                             :null => false
+    t.string   "last_name",                              :null => false
     t.string   "web_site"
     t.integer  "team_id"
   end

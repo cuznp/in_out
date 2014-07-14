@@ -4,6 +4,7 @@ describe UsersController, :type => :controller do
 
   let(:user) { create(:user) }
   render_views
+
   before do
     sign_in user
   end
@@ -13,6 +14,9 @@ describe UsersController, :type => :controller do
     it "renders the index template" do
       expect(response).to render_template("index")
     end
+  end
+
+end
     it "populates an array of users" do 
       user = FactoryGirl.create(:user) 
       get :index 
@@ -79,8 +83,8 @@ describe UsersController, :type => :controller do
       thisuser = FactoryGirl.create(:user) 
       get :leave_team, id: thisuser
       expect(response).to redirect_to(team_path(thisTeam.id))
+    end
   end
-end
 
   describe "PUT update" do
     
@@ -137,4 +141,7 @@ end
       expect(response).to redirect_to(team_path(currentTeam.id))
     end
   end
+
 end
+
+

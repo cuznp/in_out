@@ -11,5 +11,4 @@ module ApplicationHelper
       content_tag(:span, status, :class => "status status-#{status}", :id => "status-#{user_id}") +
       link_to("Remove", leave_team_user_path(user_id), :class => "update-link")
   end
-
 end

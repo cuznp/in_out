@@ -13,8 +13,3 @@ test:
   host: localhost
   username: root
 
-production:
-  adapter: mysql2
-  database: clio_project_development
-  host: localhost
-  username: root
