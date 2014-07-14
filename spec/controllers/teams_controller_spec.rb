@@ -19,10 +19,13 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe TeamsController, :type => :controller do
+  
+  let(:user) { create(:user) }
 
-  # This should return the minimal set of attributes required to create a valid
-  # Team. As you add validations to Team, be sure to
-  # adjust the attributes here as well.
+  before do
+    sign_in user
+  end
+
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
   }
@@ -36,123 +39,147 @@ RSpec.describe TeamsController, :type => :controller do
   # TeamsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET index" do
-    it "assigns all teams as @teams" do
-      team = Team.create! valid_attributes
-      get :index, {}, valid_session
-      expect(assigns(:teams)).to eq([team])
-    end
-  end
-
+describe "GET #index" do 
+  it "populates an array of contacts" do 
+    team = FactoryGirl.create(:team) 
+    get :index 
+    expect(assigns(:teams)).to eq([team]) 
+  end 
+  it "renders the :index view" do 
+    get :index 
+    expect(response).to render_template :index 
+  end 
+end
   describe "GET show" do
     it "assigns the requested team as @team" do
-      team = Team.create! valid_attributes
-      get :show, {:id => team.to_param}, valid_session
+      team = FactoryGirl.create(:team)
+      @members = FactoryGirl.create_list(:user, 2)
+      @nonmembers = FactoryGirl.create_list(:user, 2)
+      get :show, id: team
       expect(assigns(:team)).to eq(team)
     end
+
+    it "renders the #show view" do 
+      team = FactoryGirl.create(:team)
+      get :show, id: team
+      expect(response).to render_template :show
+    end
+  end
+  describe "GET edit" do
+
+    it "assigns the requested user as @team" do
+      team = FactoryGirl.create(:team)
+      get :edit, id: team
+      expect(assigns(:team)).to eq(team)
+    end
+
+    it "renders the #edit view" do
+      team = FactoryGirl.create(:team)
+      get :edit, id: team
+      expect(response).to render_template :edit
+    end 
   end
 
   describe "GET new" do
-    it "assigns a new team as @team" do
-      get :new, {}, valid_session
-      expect(assigns(:team)).to be_a_new(Team)
-    end
+
+    it "renders the #new view" do
+      team = FactoryGirl.create(:team)
+      get :new
+      expect(response).to render_template :new
+    end 
   end
 
-  describe "GET edit" do
-    it "assigns the requested team as @team" do
-      team = Team.create! valid_attributes
-      get :edit, {:id => team.to_param}, valid_session
-      expect(assigns(:team)).to eq(team)
-    end
-  end
 
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Team" do
         expect {
-          post :create, {:team => valid_attributes}, valid_session
+          post :create, {:team => FactoryGirl.attributes_for(:team)}
         }.to change(Team, :count).by(1)
       end
 
       it "assigns a newly created team as @team" do
-        post :create, {:team => valid_attributes}, valid_session
+        post :create, {:team => FactoryGirl.attributes_for(:team)}
         expect(assigns(:team)).to be_a(Team)
         expect(assigns(:team)).to be_persisted
       end
 
       it "redirects to the created team" do
-        post :create, {:team => valid_attributes}, valid_session
+        post :create, {:team => FactoryGirl.attributes_for(:team)}
         expect(response).to redirect_to(Team.last)
       end
     end
 
     describe "with invalid params" do
-      it "assigns a newly created but unsaved team as @team" do
-        post :create, {:team => invalid_attributes}, valid_session
-        expect(assigns(:team)).to be_a_new(Team)
+      it "does not create a team" do
+        post :create, {:team => FactoryGirl.attributes_for(:invalid_team)}
+        expect(assigns(:team)).to_not be_a_new(Team)
       end
 
-      it "re-renders the 'new' template" do
-        post :create, {:team => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
+      it"redirects to new" do
+        post :create, {:team => FactoryGirl.attributes_for(:invalid_team)}
+        expect(response).to redirect_to(Team.last)
       end
     end
   end
 
   describe "PUT update" do
+    before :each do
+      @team = FactoryGirl.create(:team, name: "Test_Team_A")
+
+    end
+
+    
     describe "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+ 
+      let(:new_attributes) { FactoryGirl.attributes_for(:team) }
 
       it "updates the requested team" do
-        team = Team.create! valid_attributes
-        put :update, {:id => team.to_param, :team => new_attributes}, valid_session
-        team.reload
-        skip("Add assertions for updated state")
+        put :update, {:id => @team.id, :team => new_attributes}
+        @team.reload
       end
 
       it "assigns the requested team as @team" do
-        team = Team.create! valid_attributes
-        put :update, {:id => team.to_param, :team => valid_attributes}, valid_session
-        expect(assigns(:team)).to eq(team)
+        put :update, {:id => @team.id, :team => new_attributes}
+        expect(assigns(:team)).to eq(@team)
       end
 
       it "redirects to the team" do
-        team = Team.create! valid_attributes
-        put :update, {:id => team.to_param, :team => valid_attributes}, valid_session
-        expect(response).to redirect_to(team)
+        put :update, {:id => @team.id, :team => new_attributes}
+        expect(response).to redirect_to(@team)
       end
     end
 
     describe "with invalid params" do
       it "assigns the team as @team" do
-        team = Team.create! valid_attributes
-        put :update, {:id => team.to_param, :team => invalid_attributes}, valid_session
-        expect(assigns(:team)).to eq(team)
-      end
-
-      it "re-renders the 'edit' template" do
-        team = Team.create! valid_attributes
-        put :update, {:id => team.to_param, :team => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
+        put :update, {:id => @team.id, :team => FactoryGirl.attributes_for(:invalid_team)}
+        expect(assigns(:team)).to eq(@team)
       end
     end
   end
 
   describe "DELETE destroy" do
     it "destroys the requested team" do
-      team = Team.create! valid_attributes
+      team = FactoryGirl.create(:team)
       expect {
-        delete :destroy, {:id => team.to_param}, valid_session
+        delete :destroy, {:id => team.id}
       }.to change(Team, :count).by(-1)
     end
 
     it "redirects to the teams list" do
-      team = Team.create! valid_attributes
-      delete :destroy, {:id => team.to_param}, valid_session
-      expect(response).to redirect_to(teams_url)
+      team = FactoryGirl.create(:team)
+      delete :destroy, {:id => team.id}
+      expect(response).to redirect_to(teams_path)
+    end
+
+    it "sets all member associations to NULL" do
+      team = FactoryGirl.create(:team)
+      thisuser = FactoryGirl.create(:user)
+      thisuser.team_id = team.id
+      thisuser.save
+      delete :destroy, {:id => team.id}
+      thisuser.reload
+      expect(thisuser.team_id).to eq(nil)
     end
   end
 
