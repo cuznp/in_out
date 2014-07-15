@@ -33,6 +33,7 @@ Devise is great for authentication of users and prevention of Insecure Direct Ob
 
 The session cookie stores minimal information which is good for preventing loss of sensitive information.
 
+The websocket solution I used to deal with the asynchronous updates insecurely sends information, but the information is kept minimal to prevent anything of value from being known.
 
 
 
