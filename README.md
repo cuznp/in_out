@@ -1,14 +1,36 @@
-~Patrick Underwood Solutions
+# Patrick Underwood In/Out Board solutions
+
+## Asynchronous updates
+
+Used the Faye gem on a Thin server to allow for asynchronous updates that are dealt with 
+via javaScript.
 
 My solution uses the Thin server:
 	To start server: $sh startserver.sh
+	
+## Teams
+
+Teams works similarly to users. Adding and removing members to teams is handled in the 
+a specific team's view. Two new methods were added to user_controller.rb to deal with
+joining and leaving teams. As well as a new helper method in 
+app/helpers/application_helper.rb
+
+## Tests
+
+I tried to cover as much as possible. I was unable to discern why my test for
+status in the user_controller.rb would not work.
+
+## Migration for IP addresses
+
+My solution is within (`20130416230652_convert_string_ips_to_integers.rb`) as well as 
+one small alteration to /app/models/user.rb
+
+## Additional Questions to Answer
 
 My answers to the two written questions can be found in:
 	AdditionalAnswers.txt in the root.
 
-
-# Clio In/Out Board skeleton
-
+///////////	//////////	///////////	////////////	////////////
 Feel free to alter `config/database.yml` to suit your development
 environment, and to add to the `Gemfile` any gems that you find helpful.
 
