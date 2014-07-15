@@ -1,0 +1,42 @@
+1. Why store IPs as integers?
+
+Storing IP addresses as integers has a number of advantages over storing them as strings. The most apparent of them is the size. As a string an IP address occupies 15 bytes, whereas when converted to an int it can be stored is as little as 11 bytes. This makes searches on these values faster and if indexed, the speed on searches is greatly increased. In this app it benefits the validation of users' ips for keeping track of sessions. The only downside is the resources that are needed to convert back and fourth between string and integer. As the number of records grows though, this conversion time is a good tradeoff for the speed increase in querries.
+
+2. App Security
+
+Vulnerabilities:
+
+According to Brakeman the app has three major security risks and a number of minor ones. 
+
+There are a number of other minor issues and one major issue due to the version of Rails used to implement this application. By upgrading to at least Rails 3.2.18 these risks can be mitigated (the Brakeman report is included in the root as security.html) These issues include risk of Remote Code Execution, Cross Site Scripting, and DOS attack. The major issue is a known SQL injection vulnerability which again can be eliminated through upgrading Rails. 
+
+A required gemfile, i18n, also needs to be upgraded to prevent a known XSS vulnerability. 
+
+Another major vulnerability is the storing of the session secret key in version control. This can lead to  SQL injection. A polular solution for this is to place the session secret into an environment variable and remove it from version control.
+
+Cross-Site Request Forgery is also possible with this app as there is no validation of the source of requests from clients. protect_from_forgery can be added to the application controller to automatically generate security tokens so that the server can validate the source of requests.
+
+Other potential security holes are the lack of SSL which could lead to session hijacking. Sniffing of cookies can lead to the generation of counterfeit cookies. Forcing the app to run over SSL will prevent this. 
+
+HTML tags in user inputs are treated as text preventing XSS, but if, for example, the user's name is <b>Ted</b>, clicking update beside his name will render the html. This could lead to XSS. A filter preventing "<>\/" characters in inputs would help prevent this. 
+
+
+I believe this app to be free of the following:
+
+Header injection has been dealt with in Rails since version 2.1.2. 
+
+Sources of command line injection vulnerabilities are not present in the code thereby mitigating that risk.
+
+Having to validate against models helps prevent SQL Injection.
+
+Devise is great for authentication of users and prevention of Insecure Direct Object Reference.
+
+The session cookie stores minimal information which is good for preventing loss of sensitive information.
+
+
+
+
+
+
+
+

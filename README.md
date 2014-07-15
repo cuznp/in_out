@@ -1,4 +1,11 @@
-To start server: $sh startserver.sh
+~Patrick Underwood Solutions
+
+My solution uses the Thin server:
+	To start server: $sh startserver.sh
+
+My answers to the two written questions can be found in:
+	AdditionalAnswers.txt in the root.
+
 
 # Clio In/Out Board skeleton
 

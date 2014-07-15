@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
     STATUSES.key(read_attribute(:status))
   end
 
- unless ( User.columns_hash['current_sign_in_ip'].type != "string" )
+ unless ( File.basename($0) == "rake" && ARGV.include?("db:migrate") )
   [:current_sign_in_ip, :last_sign_in_ip].each do |field|
     define_method(field) do
       ip = read_attribute(field)
